@@ -1,23 +1,80 @@
 <template>
   <div class="container">
-    <Header @toFea='scrollFeature' @toFaq="scrollFaq"></Header>
+    <Header></Header>
     <div class="panel1">
-      <div class="btns">
-        <a class="btn" target="_black"><img src="../assets/b.png"></a>
-        <a class="btn" target="_black"><img src="../assets/c.png"></a>
+      <img src="../assets/ren.png" class="ren">
+      <div class="bannerinfo">
+        <div><img src="../assets/bannerinfo.png"></div>
+        <div class="btns">
+          <a class="btn"><img src="../assets/btn1.png"></a>
+          <a class="btn"><img src="../assets/btn2.png"></a>
+        </div>
       </div>
-      <a @click="linkTo(1)" class="play">
-        <img src="../assets/a.png">
-      </a>
     </div>
-    <div class="panel2" id="feature">
-      <img src="../assets/img_05.png">
+    <div class="panel2">
+      <div class="titlebox">
+        <img src="../assets/title1.png">
+      </div>
+      <div class="panel1con">
+        <img src="../assets/panelimg1.png">
+        <div class="right">
+          <img src="../assets/panelimg2.png">
+          <img src="../assets/panelimg3.png">
+          <img src="../assets/panelimg4.png">
+        </div>
+      </div>
     </div>
     <div class="panel3">
-      <img src="../assets/img02.png">
+      <div class="titlebox">
+        <img src="../assets/title2.png">
+      </div>
+      <div class="panel3con">
+        <img src="../assets/panelimg5.png">
+        <div class="right">
+          <img src="../assets/panelimg6.png">
+          <img src="../assets/panelimg7.png">
+          <img src="../assets/panelimg8.png">
+          <img src="../assets/panelimg9.png">
+        </div>
+      </div>
     </div>
-    <div class="panel4" id="faq">
-      <img src="../assets/img_07.png">
+    <div class="panel4">
+      <div class="titlebox"></div>
+      <div class="panel4list">
+        <div class="panel4item">
+          <img src="../assets/panelimg10.png">
+          <img src="../assets/panelimg11.png">
+        </div>
+        <div class="panel4item">
+          <img src="../assets/panelimg12.png">
+          <img src="../assets/panelimg13.png">
+        </div>
+        <div class="panel4item">
+          <img src="../assets/panelimg14.png">
+          <img src="../assets/panelimg15.png">
+        </div>
+      </div>
+    </div>
+    <div class="panel5">
+      <div class="titlebox">
+        <img src="../assets/title3.png">
+      </div>
+      <img class="panel5img1" src="../assets/panelimg16.png">
+      <div class="tokeninfo">
+        <img class="panel5img2" src="../assets/panelimg17.png">
+        <img class="panel5img2" src="../assets/panelimg18.png">
+        <img class="panel5img2" src="../assets/panelimg19.png">
+      </div>
+      <img class="panel5img3" src="../assets/panelimg20.png">
+      <div class="network">
+        <img class="panel5img4" src="../assets/panelimg21.png">
+        <img class="panel5img4" src="../assets/panelimg22.png">
+        <img class="panel5img4" src="../assets/panelimg23.png">
+      </div>
+      <div class="panel5img5">
+        <img src="../assets/panelimg24.png">
+      </div>
+      <img class="panel5img6" src="../assets/panelimg25.png">
     </div>
     <Footer></Footer>
   </div>
@@ -64,18 +121,7 @@ export default {
       localStorage.setItem('active',i)
       this.$router.push('/staking')
     },
-    scrollFeature(){
-      this.$el.querySelector('#feature').scrollIntoView({
-                    behavior: "smooth",  // 平滑过渡
-                    block:    "start"  // 上边框与视窗顶部平齐。默认值
-                });
-    },
-    scrollFaq(){
-      this.$el.querySelector('#faq').scrollIntoView({
-                    behavior: "smooth",  // 平滑过渡
-                    block:    "start"  // 上边框与视窗顶部平齐。默认值
-                });
-    }
+    
   },
   created(){
     
@@ -89,111 +135,153 @@ export default {
   background:#000;
   font-family: DFPYaSongW9;
   .panel1{
-    background:url(../assets/img_01.png) no-repeat center;
-    background-size:100% 100%;
-    height: 937px;
+    background:url(../assets/banner.png) no-repeat center;
+    background-size:cover;
+    position:relative;
     display: flex;
     justify-content: center;
-    .btns{
-      margin-top:38%;
-      margin-right:10px;
-      .btn{
-        display:block;
-        margin-bottom:10px;
-        cursor: pointer;
-        img{
-          width:350px;
+    align-items: center;
+    padding-top:40px;
+    .ren{
+      width:552px;
+    }
+    .bannerinfo{
+      width:40%;
+      margin-left:-100px;
+      .btns{
+        display:flex;
+        justify-content: center;
+        padding-top:30px;
+        padding-left:250px;
+        .btn{
+          width:219px;
+          cursor:pointer;
+          margin-left:35px;
         }
       }
     }
-    .play{
-      margin-top:38%;
-      img{
-        width:388px;
-      }
+  }
+  .titlebox{
+    background:url(../assets/line.png) no-repeat top center;
+    background-size:100% 28px;
+    text-align:center;
+    min-height:30px;
+    img{
+      margin-top:-40px;
     }
   }
   .panel2{
-    height:1244px;
-    background:url(../assets/img_02.png) no-repeat center;
-    background-size:100% 100%;
-    text-align:center;
-    img{
-      width:1200px;
-      margin-top:86px;
-    }
-  }
-  .panel3{
-    height:1667px;
-    background:url(../assets/farm12.png) no-repeat center;
-    background-size:100% 100%;
-    text-align:center;
-    padding:80px 0 115px;
-    box-sizing: border-box;
-    img{
-      width:1400px;
-    }
-  }
-  .panel4{
-    height:1282px;
-    background:url(../assets/img_04.png) no-repeat center;
-    background-size:100% 100%;
-    text-align:center;
-    img{
-      width:1200px;
-      margin-top:86px;
-    }
-  }
-}
-@media screen and (max-width:900px) {
-  .container{
-    .panel1{
-      height:auto;
-      .btns{
-        .btn{
-          img{
-            width:160px;
+    position:relative;
+    z-index:2;
+    min-height:704px;
+    background:url(../assets/panelbg1.png) no-repeat center;
+    background-size:cover;
+    
+    .panel1con{
+      display:flex;
+      justify-content: center;
+      padding-top:70px;
+      margin-left: -100px;
+      .right{
+        margin-left:30px;
+        img{
+          display:block;
+          &:nth-child(2){
+            margin:30px 0;
+          }
+          &:nth-child(3){
+            cursor: pointer;
           }
         }
       }
-      .play{
+    }
+  }
+  .panel3{
+    min-height:643px;
+    background:url(../assets/panelbg2.png) no-repeat center;
+    background-size:cover;
+    position:relative;
+    z-index:3;
+    .titlebox{
+      img{
+        margin-top:-60px;
+      }
+    }
+    .panel3con{
+      display:flex;
+      justify-content: center;
+      align-items: center;
+      .right{
         img{
-           width:186px;
+          display:block;
+          margin-left:44px;
+          &:nth-child(2){
+            margin:17px 0 44px 44px;
+          }
+          &:nth-child(3){
+            margin-left:0;
+          }
         }
       }
     }
-    .panel2{
-      height:auto;
-      padding:0 10px;
-      img{
-        width:100%;
-        margin:30px 0;
-      }
-    }
-    .panel3{
-      height:auto;
-      padding:30px 10px;
-      img{
-        width:100%;
-      }
-    }
-    .panel4{
-      height :auto;
-      padding:0 10px;
-      img{
-        width:100%;
+  }
+  .panel4{
+    min-height:776px;
+    background:url(../assets/panelbg3.png) no-repeat center;
+    background-size:cover;
+    position:relative;
+    z-index:3;
+    .panel4list{
+      display:flex;
+      justify-content: center;
+      .panel4item{
+        text-align:center;
+        margin:0 26px;
+        width:375px;
+        img:first-child{
+          height:441px;
+          margin-bottom:18px;
+        }
       }
     }
   }
+  .panel5{
+    min-height:1228px;
+    position:relative;
+    z-index:4;
+    background:url(../assets/panelbg4.png) no-repeat center;
+    background-size:cover;
+    text-align:center;
+    .titlebox{
+      img{
+        margin-top:-25px;
+      }
+    }
+    .panel5img1{
+      margin:42px;
+    }
+    .panel5img2{
+      margin:0 34px 34px;
+    }
+    .panel5img3{
+      margin-bottom:24px;
+    }
+    .panel5img4{
+      margin:0 23px;
+    }
+    .panel5img5{
+      margin:40px auto;
+      img{
+        margin-left:-220px;
+      }
+    }
+  }
+  
 }
-@media screen and (max-width:1400px) {
-  .container .panel1 .play,.container .panel1 .btns{margin-top:35%;}
-}
-@media screen and (max-width:1920px) {
-  .container .panel1 .play,.container .panel1 .btns{margin-top:35%;}
-}
-@media screen and (min-width:1920px) {
-  .container .panel1 .play,.container .panel1 .btns{margin-top:30%;}
+@media screen and (max-width:900px) {
+  .container{
+    
+  }
 }
 </style>
 <style >

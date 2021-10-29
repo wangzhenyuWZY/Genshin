@@ -2,24 +2,14 @@
     <div class="header">
         <img src="../assets/logo_FoxDex.png" class="logo">
         <div class="menus">
-            <a class="menu" :class="active==0?'active':''" @click="linkTo(0)" to="/">Home</a>
-            <a class="menu" :class="active==1?'active':''" @click="linkTo(1)" to="/Features">Features</a>
-            <a class="menu" :class="active==2?'active':''" @click="linkTo(2)" to="/">FAQ</a>
-            <a class="menu" :class="active==3?'active':''" @click="linkTo(3)" to="/">Stake</a>
-            <a class="menu" href="https://www.sheroswap.org/swap/#/pool/connectpool" target="_black">Swap</a>
-        </div>
-        <div class="options">
-            <div class="wallet" @click="showLinkPop">
-                <img src="../assets/icon_wallet_green.png">
-                {{isLogin?defaultAddress:'Connect to wallet'}}
-            </div>
-            <!-- <div class="lang">
-                English
-                <img src="../assets/icon_lang.png">
-            </div> -->
-            <!-- <div class="setting">
-                <img src="../assets/icon_setting.png">
-            </div> -->
+            <a class="menu">Home</a>
+            <a class="menu">Game Trailer</a>
+            <a class="menu">News</a>
+            <a class="menu">NFT Portal</a>
+            <a class="menu">Tokenomics</a>
+            <a class="menu">IDO</a>
+            <a class="menu">Roadmap</a>
+            <a class="menu">Contact</a>
         </div>
         <div class="nav_merge" v-show="!moble">
           <img class="merge_img" src="../assets/icon_red.png" @click="drawer = true" alt="">
@@ -39,22 +29,25 @@
             </div>
           </div>
           <ul class="drawer_nav">
-            <li><a class="menu" :class="active==0?'active':''" @click="linkTo(0)" to="/">Home</a></li>
-            <li><a class="menu" :class="active==1?'active':''" @click="linkTo(1)" to="/Features">Features</a></li>
-            <li><a class="menu" :class="active==2?'active':''" @click="linkTo(2)" to="/">FAQ</a></li>
-            <li><a class="menu" :class="active==3?'active':''" @click="linkTo(3)" to="/">Stake</a></li>
-            <li><a class="menu" href="https://www.sheroswap.org/swap/#/pool/connectpool" target="_black">Swap</a></li>
+            <li><a class="menu">Home</a></li>
+            <li><a class="menu">Game Trailer</a></li>
+            <li><a class="menu">News</a></li>
+            <li><a class="menu">NFT Portal</a></li>
+            <li><a class="menu">Tokenomics</a></li>
+            <li><a class="menu">IDO</a></li>
+            <li><a class="menu">Roadmap</a></li>
+            <li><a class="menu">Contact</a></li>
           </ul>
           <div class="langAndSet">
             <!-- <div class="setbox" @click.stop="tolerPop=true"><i class="setico"></i>Setting</div> -->
             <!-- <div class="setbox" @click="hdel"><i class="langico"></i>简体中文</div> -->
             <div class="cantactus">
-              <a target="_black" href="/"><img src="../assets/icon_脸书.png"></a>
-              <a target="_black" href="/"><img src="../assets/icon_推特.png"></a>
-              <a target="_black" href="/"><img src="../assets/icon_telegram.png"></a>
-              <a target="_black" href="/"><img src="../assets/icon_discord.png"></a>
-              <a target="_black" href="/"><img src="../assets/icon_medium.png"></a>
-              <a target="_black" href="/"><img src="../assets/icon_reddit.png"></a>
+              <a target="_black" href="/"><img src=""></a>
+              <a target="_black" href="/"><img src=""></a>
+              <a target="_black" href="/"><img src=""></a>
+              <a target="_black" href="/"><img src=""></a>
+              <a target="_black" href="/"><img src=""></a>
+              <a target="_black" href="/"><img src=""></a>
           </div>
           </div>
         </el-drawer>
@@ -157,26 +150,26 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-@font-face { // 正常
-    font-family: DFPBuDingW12; 
-    src:url('../assets/DFPBuDingW12.ttf');
-}
+// @font-face { // 正常
+//     font-family: DFPBuDingW12; 
+//     src:url('../assets/DFPBuDingW12.ttf');
+// }
 .header{
-    font-family: DFPBuDingW12;
-    height:72px;
-    background:#319125;
-    padding:0 48px;
+    // font-family: DFPBuDingW12;
+    height:82px;
+    background: linear-gradient(180deg, #323131 0%, #000000 100%);
     display:flex;
-    justify-content: space-between;
+    justify-content: center;
+    opacity:0.7;
     .logo{
-        width:220px;
+        width:160px;
     }
     .menus{
         display:flex;
         padding-top:24px;
+        padding-left:120px;
         .menu{
-            padding-bottom:10px;
-            font-size:20px;
+            font-size:18px;
             color:#fff;
             line-height:20px;
             position:relative;
@@ -184,62 +177,6 @@ export default {
             cursor: pointer;
             height:20px;
             font-family: DFPBuDingW12;
-            &.active{
-                &:after{
-                    content:"";
-                    position:absolute;
-                    bottom:0;
-                    left:50%;
-                    width:40px;
-                    height:3px;
-                    background:#fff;
-                    border-radius:3px;
-                    margin-left:-20px;
-                }
-            }
-        }
-    }
-    .options{
-        display:flex;
-        justify-content: space-between;
-        padding-top:16px;
-        .wallet{
-            width:197px;
-            height:40px;
-            background:#1D7112;
-            display:flex;
-            justify-content:center;
-            border-radius:28px;
-            font-size:18px;
-            color:#FFFFFF;
-            align-items: center;
-            font-family: Roboto-Regular, Roboto;
-            cursor: pointer;
-            img{
-                width:24px;
-                margin-right:10px;
-            }
-        }
-        .lang{
-            display:flex;
-            justify-content: space-between;
-            align-items: center;
-            color:rgba(255,255,255,0.5);
-            font-size:16px;
-            padding:0 16px 0 37px;
-            height:40px;
-            cursor: pointer;
-            img{
-                width:32px;
-            }
-        }
-        .setting{
-            line-height:37px;
-            cursor: pointer;
-            img{
-                width:32px;
-                vertical-align: middle;
-            }
         }
     }
 }
