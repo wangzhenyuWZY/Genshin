@@ -76,6 +76,31 @@
       </div>
       <img class="panel5img6" src="../assets/panelimg25.png">
     </div>
+    <div class="panel6">
+      <div class="titlebox">
+        <img src="../assets/title4.png">
+      </div>
+      <img class="panel6img1" src="../assets/panelimg26.png">
+    </div>
+    <div class="panel7">
+      <div class="titlebox">
+        <img src="../assets/title5.png">
+      </div>
+      <ul class="partnerList">
+        <img src="../assets/panelimg27.png">
+        <img src="../assets/panelimg28.png">
+        <img src="../assets/panelimg29.png">
+        <img src="../assets/panelimg30.png">
+        <img src="../assets/panelimg31.png">
+        <img src="../assets/panelimg32.png">
+        <img src="../assets/panelimg33.png">
+        <img src="../assets/panelimg34.png">
+        <img src="../assets/panelimg35.png">
+        <img src="../assets/panelimg36.png">
+        <img src="../assets/panelimg37.png">
+        <img src="../assets/panelimg38.png">
+      </ul>
+    </div>
     <Footer></Footer>
   </div>
 </template>
@@ -276,7 +301,44 @@ export default {
       }
     }
   }
-  
+  .panel6{
+    min-height:1517px;
+    background:url(../assets/panelbg6.png) no-repeat center;
+    background-size:cover;
+    text-align:center;
+    position:relative;
+    z-index:5;
+    .titlebox{
+      img{
+        margin-top:-30px;
+      }
+    }
+    .panel6img1{
+      margin-left:365px;
+    }
+  }
+  .panel7{
+    position:relative;
+    z-index:6;
+    min-height:628px;
+    background:url(../assets/panelbg5.png) no-repeat center;
+    background-size:cover;
+    .titlebox{
+      img{
+        margin-top:-30px;
+      }
+    }
+    .partnerList{
+      display:flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      width:800px;
+      margin:130px auto;
+      img{
+        margin-bottom:36px;
+      }
+    }
+  }
 }
 @media screen and (max-width:900px) {
   .container{
