@@ -48,7 +48,7 @@ All rights reserved.</p>
     position:relative;
     .footbg{
         position:absolute;
-        left:325px;
+        left:10%;
         bottom:0;
     }
     .footop{

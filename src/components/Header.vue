@@ -160,7 +160,7 @@ export default {
     background: linear-gradient(180deg, #323131 0%, #000000 100%);
     display:flex;
     justify-content: center;
-    opacity:0.7;
+    opacity:1;
     .logo{
         width:160px;
     }
