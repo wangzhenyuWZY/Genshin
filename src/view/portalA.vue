@@ -6,17 +6,17 @@
         </div>
         <div class="portalCon">
           <div class="topTab">
-            <div class="tabImg">
-              <img src="../assets/tab1.png" v-show="tab==0">
-              <img src="../assets/tab1-1.png" v-show="tab!==0">
+            <div class="tabImg" @click="tab = 0;btmtab = 0;">
+              <img src="../assets/tab1.png" v-show="parseInt(tab)==0">
+              <img src="../assets/tab1-1.png" v-show="parseInt(tab)!==0">
             </div>
-            <div class="tabImg">
-              <img src="../assets/tab2.png" v-show="tab==1">
-              <img src="../assets/tab2-2.png" v-show="tab!==1">
+            <div class="tabImg" @click="tab = 1;btmtab = 0;">
+              <img src="../assets/tab2.png" v-show="parseInt(tab)==1">
+              <img src="../assets/tab2-2.png" v-show="parseInt(tab)!==1">
             </div>
-            <div class="tabImg">
-              <img src="../assets/tab3.png" v-show="tab==2">
-              <img src="../assets/tab3-3.png" v-show="tab!==2">
+            <div class="tabImg" @click="tab = 2;btmtab = 0;">
+              <img src="../assets/tab3.png" v-show="parseInt(tab)==2">
+              <img src="../assets/tab3-3.png" v-show="parseInt(tab)!==2">
             </div>
           </div>
           <div class="portalPanel">
@@ -38,45 +38,45 @@
           </div>
           <div class="btmTab">
             <div class="btmTabList" v-show="tab==0">
-              <div class="tabImg">
+              <div class="tabImg" @click="btmtab = 0">
                 <img src="../assets/btmimg1.png" v-show="btmtab==0">
                 <img src="../assets/btmimg1-1.png" v-show="btmtab!==0">
               </div>
-              <div class="tabImg">
+              <div class="tabImg" @click="btmtab = 1">
                 <img src="../assets/btmimg2.png" v-show="btmtab==1">
                 <img src="../assets/btmimg2-2.png" v-show="btmtab!==1">
               </div>
-              <div class="tabImg">
+              <div class="tabImg" @click="btmtab = 2">
                 <img src="../assets/btmimg3.png" v-show="btmtab==2">
                 <img src="../assets/btmimg3-3.png" v-show="btmtab!==2">
               </div>
             </div>
             <div class="btmTabList" v-show="tab==1">
-              <div class="tabImg">
-                <img src="../assets/btmimg4.png">
-                <img src="../assets/btmimg4-4.png">
+              <div class="tabImg" @click="btmtab = 0">
+                <img src="../assets/btmimg4.png" v-show="btmtab==0">
+                <img src="../assets/btmimg4-4.png" v-show="btmtab!==0">
               </div>
-              <div class="tabImg">
-                <img src="../assets/btmimg5.png">
-                <img src="../assets/btmimg5-5.png">
+              <div class="tabImg" @click="btmtab = 1">
+                <img src="../assets/btmimg5.png" v-show="btmtab==1">
+                <img src="../assets/btmimg5-5.png" v-show="btmtab!==1">
               </div>
-              <div class="tabImg">
-                <img src="../assets/btmimg6.png">
-                <img src="../assets/btmimg6-6.png">
+              <div class="tabImg" @click="btmtab = 2">
+                <img src="../assets/btmimg6.png" v-show="btmtab==2">
+                <img src="../assets/btmimg6-6.png" v-show="btmtab!==2">
               </div>
             </div>
             <div class="btmTabList" v-show="tab==2">
-              <div class="tabImg">
-                <img src="../assets/btmimg7.png">
-                <img src="../assets/btmimg7-7.png">
+              <div class="tabImg" @click="btmtab = 0">
+                <img src="../assets/btmimg7.png" v-show="btmtab==0">
+                <img src="../assets/btmimg7-7.png" v-show="btmtab!==0">
               </div>
-              <div class="tabImg">
-                <img src="../assets/btmimg8.png">
-                <img src="../assets/btmimg8-8.png">
+              <div class="tabImg" @click="btmtab = 1">
+                <img src="../assets/btmimg8.png" v-show="btmtab==1">
+                <img src="../assets/btmimg8-8.png" v-show="btmtab==!1">
               </div>
-              <div class="tabImg">
-                <img src="../assets/btmimg9.png">
-                <img src="../assets/btmimg9-9.png">
+              <div class="tabImg" @click="btmtab = 2">
+                <img src="../assets/btmimg9.png" v-show="btmtab==2">
+                <img src="../assets/btmimg9-9.png" v-show="btmtab!==2">
               </div>
             </div>
             
@@ -107,7 +107,7 @@ export default {
   },
   data() {
     return {
-      tab:0,
+      tab:this.$route.query.tab,
       btmtab:0
     }
   },
@@ -128,7 +128,7 @@ export default {
     
   },
   created(){
-    
+    console.log(this.$route.query.tab)
   }
 }
 </script>

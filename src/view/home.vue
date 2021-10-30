@@ -41,15 +41,15 @@
     <div class="panel4">
       <div class="titlebox"></div>
       <div class="panel4list">
-        <div class="panel4item">
+        <div class="panel4item" @click="checktab(0)">
           <img src="../assets/panelimg10.png">
           <img src="../assets/panelimg11.png">
         </div>
-        <div class="panel4item">
+        <div class="panel4item" @click="checktab(1)">
           <img src="../assets/panelimg12.png">
           <img src="../assets/panelimg13.png">
         </div>
-        <div class="panel4item">
+        <div class="panel4item" @click="checktab(2)">
           <img src="../assets/panelimg14.png">
           <img src="../assets/panelimg15.png">
         </div>
@@ -146,7 +146,14 @@ export default {
       localStorage.setItem('active',i)
       this.$router.push('/staking')
     },
-    
+    checktab(n){
+      this.$router.push({
+         path: '/portalA',
+         query: {
+             tab: n
+         }
+     })
+    }
   },
   created(){
     
