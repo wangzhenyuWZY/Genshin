@@ -22,7 +22,7 @@
           <div class="drawer_logo">
             <div class="lt_logo"> <img src="../assets/logo_FoxDex.png" alt="" />
             </div>
-            <div class="rg_colse"> <img src="../assets/closeicon1.png" alt="" @click.stop="drawer = false"> </div>
+            <!-- <div class="rg_colse"> <img src="../assets/closeicon1.png" alt="" @click.stop="drawer = false"> </div> -->
           </div>
           <!-- <div class="drawer_btn">
             <div class="nav-butt">
@@ -60,10 +60,8 @@
 </template>
 <script>
 import {plusXing} from '../utils/tronwebFn'
-import Ipopup from './ipopup.vue'
 export default {
   name: 'Header',
-  components:{Ipopup},
   computed: {
     language() {
       return this.$i18n.locale
@@ -329,24 +327,24 @@ export default {
     float: right;
     padding-right: 24px;
   }
-  .langAndSet .setbox .setico {
-    display: inline-block;
-    vertical-align: middle;
-    width: 24px;
-    height: 24px;
-    background: url(../assets/icon_setting.png) no-repeat center;
-    background-size: 100% 100%;
-    margin-right:5px;
-  }
-  .langAndSet .setbox .langico {
-    display: inline-block;
-    vertical-align: middle;
-    width: 24px;
-    height:24px;
-    background: url(../assets/icon_lang.png) no-repeat center;
-    background-size: 100% 100%;
-    margin-right:5px;
-  }
+  // .langAndSet .setbox .setico {
+  //   display: inline-block;
+  //   vertical-align: middle;
+  //   width: 24px;
+  //   height: 24px;
+  //   background: url(../assets/icon_setting.png) no-repeat center;
+  //   background-size: 100% 100%;
+  //   margin-right:5px;
+  // }
+  // .langAndSet .setbox .langico {
+  //   display: inline-block;
+  //   vertical-align: middle;
+  //   width: 24px;
+  //   height:24px;
+  //   background: url(../assets/icon_lang.png) no-repeat center;
+  //   background-size: 100% 100%;
+  //   margin-right:5px;
+  // }
 }
 </style>
 <style >

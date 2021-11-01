@@ -41,10 +41,8 @@ All rights reserved.</p>
 </template>
 <script>
 import {plusXing} from '../utils/tronwebFn'
-import Ipopup from './ipopup.vue'
 export default {
   name: 'Header',
-  components:{Ipopup},
   computed: {
     language() {
       return this.$i18n.locale
