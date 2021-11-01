@@ -7,16 +7,16 @@
                     <p class="title">Index</p>
                     <div class="linklist">
                         <div>
-                            <a>Home</a>
-                            <a>Game Trailer</a>
-                            <a>News</a>
-                            <a>NFT Portal</a>
+                            <a @click="toLink(0)">Home</a>
+                            <a @click="toLink(1)">Game Trailer</a>
+                            <a @click="toLink(2)">News</a>
+                            <a @click="toLink(3)">NFT Portal</a>
                         </div>
                         <div>
-                            <a>Tokenomics</a>
-                            <a>Getting Started</a>
-                            <a>Whitepaper</a>
-                            <a>Roadmap</a>
+                            <a @click="toLink(4)">Tokenomics</a>
+                            <a @click="comesoon">Getting Started</a>
+                            <a target="_black" href="https://medium.com/@GenshinNFT">Whitepaper</a>
+                            <a @click="toLink(6)">Roadmap</a>
                         </div>
                     </div>
                 </div>
@@ -25,10 +25,10 @@
                     <img src="../assets/panelimg41.png">
                     <img src="../assets/panelimg42.png">
                     <div class="contact">
-                        <img src="../assets/panelimg43.png">
+                        <a href="https://twitter.com/GenshinNFT"><img src="../assets/panelimg43.png"></a>
                         <img src="../assets/panelimg44.png">
                         <img src="../assets/panelimg45.png">
-                        <img src="../assets/panelimg46.png">
+                        <a href="https://medium.com/@GenshinNFT"><img src="../assets/panelimg46.png"></a>
                     </div>
                 </div>
             </div>
@@ -39,6 +39,63 @@ All rights reserved.</p>
         </div>
     </div>
 </template>
+<script>
+import {plusXing} from '../utils/tronwebFn'
+import Ipopup from './ipopup.vue'
+export default {
+  name: 'Header',
+  components:{Ipopup},
+  computed: {
+    language() {
+      return this.$i18n.locale
+    },
+  },
+  data() {
+    return {
+    }
+  },
+  watch: {
+      
+  },
+  methods: {
+      comesoon(){
+      this.$message.success("Coming Soon!");
+    },
+      toLink(i){
+          localStorage.setItem('active',i)
+          this.active = i
+          if(i==0){
+              this.$router.push('/')
+          }else if(i==1){
+              this.$router.push('/')
+              this.$emit('toGame')
+          }else if(i==2){
+              this.$router.push('/')
+              this.$emit('toNews')
+          }else if(i==3){
+              this.$router.push('/')
+              this.$emit('toNft')
+          }else if(i==4){
+              this.$router.push('/')
+              this.$emit('toToken')
+          }else if(i==5){
+              this.$router.push('/')
+              this.$emit('toIdo')
+          }else if(i==6){
+              this.$router.push('/')
+              this.$emit('toMap')
+          }else if(i==7){
+              this.$router.push('/')
+              this.$emit('toContact')
+          }
+          this.drawer = false
+      }
+  },
+  created() {
+    
+  },
+}
+</script>
 <style lang="less" scoped>
 // @font-face { // 正常
 //     font-family: DFPBuDingW12; 
@@ -116,7 +173,49 @@ All rights reserved.</p>
 }
 @media screen and (max-width:900px) {
     .footer{
-        
+        .footbg{
+            width:135px;
+            left:auto;
+            right:0;
+        }
+        .footop{
+            height:384px;
+            .footopcon{
+                width:100%;
+                display: block;
+                padding-top:62px;
+                .left{
+                    margin-left:20px;
+                    .title{
+                        padding-bottom:8px;
+                    }
+                    .linklist{
+                        font-size:12px;
+                    }
+                }
+                .right{
+                    margin-left:20px;
+                    &>img{
+                        &:first-child{
+                            display:none;
+                        }
+                        &:nth-child(2){
+                            width:100px;
+                            margin-top:25px;
+                        }
+                        &:nth-child(3){
+                            display:none;
+                        }
+                    }
+                    .contact{
+                        justify-content: left;
+                        img{
+                            margin-right:16px;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 </style>

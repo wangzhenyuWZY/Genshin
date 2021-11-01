@@ -1,18 +1,22 @@
 <template>
+  <div class="headerContainer">
     <div class="header">
         <img src="../assets/logo_FoxDex.png" class="logo">
         <div class="menus">
-            <a class="menu">Home</a>
-            <a class="menu">Game Trailer</a>
-            <a class="menu">News</a>
-            <a class="menu">NFT Portal</a>
-            <a class="menu">Tokenomics</a>
-            <a class="menu">IDO</a>
-            <a class="menu">Roadmap</a>
-            <a class="menu">Contact</a>
+            <a class="menu" @click="toLink(0)">Home</a>
+            <a class="menu" @click="toLink(1)">Game Trailer</a>
+            <a class="menu" @click="toLink(2)">News</a>
+            <a class="menu" @click="toLink(3)">NFT Portal</a>
+            <a class="menu" @click="toLink(4)">Tokenomics</a>
+            <a class="menu" @click="toLink(5)">IDO</a>
+            <a class="menu" @click="toLink(6)">Roadmap</a>
+            <a class="menu" @click="toLink(7)">Contact</a>
         </div>
-        <div class="nav_merge" v-show="!moble">
-          <img class="merge_img" src="../assets/icon_red.png" @click="drawer = true" alt="">
+    </div>
+    <div class="mobHeader">
+      <img src="../assets/logo_FoxDex.png" class="logo">
+      <div class="nav_merge">
+          <img class="merge_img" src="../assets/mergeico.png" @click="drawer = true" alt="">
         </div>
         <el-drawer title="我是标题" v-model="drawer" :show-close="false" custom-class="drawer_body" :with-header="false" @click="tolerPop=false">
           <div class="drawer_logo">
@@ -20,23 +24,23 @@
             </div>
             <div class="rg_colse"> <img src="../assets/closeicon1.png" alt="" @click.stop="drawer = false"> </div>
           </div>
-          <div class="drawer_btn">
+          <!-- <div class="drawer_btn">
             <div class="nav-butt">
               <div class="login_wallet drawer_wallet">
                 <img class="wallet_img" src="../assets/icon_wallet_green.png" alt="">
                 <span class="wallet_addrs">{{defaultAddress}}</span>
               </div>
             </div>
-          </div>
+          </div> -->
           <ul class="drawer_nav">
-            <li><a class="menu">Home</a></li>
-            <li><a class="menu">Game Trailer</a></li>
-            <li><a class="menu">News</a></li>
-            <li><a class="menu">NFT Portal</a></li>
-            <li><a class="menu">Tokenomics</a></li>
-            <li><a class="menu">IDO</a></li>
-            <li><a class="menu">Roadmap</a></li>
-            <li><a class="menu">Contact</a></li>
+            <li @click="toLink(0)"><a class="menu">Home</a></li>
+            <li @click="toLink(1)"><a class="menu">Game Trailer</a></li>
+            <li @click="toLink(2)"><a class="menu">News</a></li>
+            <li @click="toLink(3)"><a class="menu">NFT Portal</a></li>
+            <li @click="toLink(4)"><a class="menu">Tokenomics</a></li>
+            <li @click="toLink(5)"><a class="menu">IDO</a></li>
+            <li @click="toLink(6)"><a class="menu">Roadmap</a></li>
+            <li @click="toLink(7)"><a class="menu">Contact</a></li>
           </ul>
           <div class="langAndSet">
             <!-- <div class="setbox" @click.stop="tolerPop=true"><i class="setico"></i>Setting</div> -->
@@ -51,8 +55,8 @@
           </div>
           </div>
         </el-drawer>
-        <Ipopup :showAlert="contPop" @closePop="contPop=false" @contented="connectWallet"></Ipopup>
-    </div>
+    </div>    
+  </div>
 </template>
 <script>
 import {plusXing} from '../utils/tronwebFn'
@@ -109,21 +113,34 @@ export default {
         that.isLogin = true
       })
     },
-      linkTo(i){
+      toLink(i){
           localStorage.setItem('active',i)
           this.active = i
           if(i==0){
               this.$router.push('/')
           }else if(i==1){
               this.$router.push('/')
-              this.$emit('toFea')
+              this.$emit('toGame')
           }else if(i==2){
               this.$router.push('/')
-              this.$emit('toFaq')
-          }else{
-              this.$router.push('/staking')
+              this.$emit('toNews')
+          }else if(i==3){
+              this.$router.push('/')
+              this.$emit('toNft')
+          }else if(i==4){
+              this.$router.push('/')
+              this.$emit('toToken')
+          }else if(i==5){
+              this.$router.push('/')
+              this.$emit('toIdo')
+          }else if(i==6){
+              this.$router.push('/')
+              this.$emit('toMap')
+          }else if(i==7){
+              this.$router.push('/')
+              this.$emit('toContact')
           }
-          
+          this.drawer = false
       },
     handleSetLanguage() {
       // 选择语言
@@ -180,11 +197,32 @@ export default {
         }
     }
 }
+.mobHeader{
+  display:none;
+}
 .nav_merge{
     display:none;
 }
 @media screen and (max-width:900px) {
+  .mobHeader{
+    height:60px;
+    background:url(../assets/headbg.png) no-repeat center;
+    background-size:100% 100%;
+    position: fixed;
+    width: 100%;
+    z-index:9;
+    display:block;
+    display:flex;
+    justify-content: space-between;
+    .logo{
+      width:88px;
+      height:38px;
+      margin-left:15px;
+      margin-top:8px;
+    }
+  }
     .header{
+        display:none;
         height:40px;
         padding:0 15px;
         .logo{
@@ -199,14 +237,16 @@ export default {
     }
     .nav_merge {
         display:block;
-        margin-left: 24px;
+        background:none;
+        text-align:right;
+        padding-right:20px;
         img {
             vertical-align: middle;
             margin-top: 8px;
             cursor: pointer;
         }
         .merge_img {
-            width: 24px;
+            width: 42px;
             height: auto;
         }
     }
