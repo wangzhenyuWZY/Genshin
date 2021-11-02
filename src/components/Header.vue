@@ -12,18 +12,19 @@
             <a class="menu" @click="toLink(6)">Roadmap</a>
             <a class="menu" @click="toLink(7)">Contact</a>
         </div>
+        <div class="options">
+            <div class="wallet">
+                <img src="../assets/icon_my_wallet.png">
+                {{defaultAddress?defaultAddress:'Connect to wallet'}}
+            </div>
+        </div>
     </div>
     <div class="mobHeader">
-      <img src="../assets/logo_FoxDex.png" class="logo">
+      <!-- <img src="../assets/logo_FoxDex.png" class="logo"> -->
       <div class="nav_merge">
           <img class="merge_img" src="../assets/mergeico.png" @click="drawer = true" alt="">
         </div>
         <el-drawer title="我是标题" v-model="drawer" :show-close="false" custom-class="drawer_body" :with-header="false" @click="tolerPop=false">
-          <div class="drawer_logo">
-            <div class="lt_logo"> <img src="../assets/logo_FoxDex.png" alt="" />
-            </div>
-            <!-- <div class="rg_colse"> <img src="../assets/closeicon1.png" alt="" @click.stop="drawer = false"> </div> -->
-          </div>
           <!-- <div class="drawer_btn">
             <div class="nav-butt">
               <div class="login_wallet drawer_wallet">
@@ -32,6 +33,7 @@
               </div>
             </div>
           </div> -->
+          <i class="closeico" @click="drawer = false"></i>
           <ul class="drawer_nav">
             <li @click="toLink(0)"><a class="menu">Home</a></li>
             <li @click="toLink(1)"><a class="menu">Game Trailer</a></li>
@@ -59,6 +61,7 @@
   </div>
 </template>
 <script>
+import { ethers } from 'ethers'
 import {plusXing} from '../utils/tronwebFn'
 export default {
   name: 'Header',
@@ -84,7 +87,8 @@ export default {
       active:localStorage.getItem('active'),
       defaultAddress:'',
       isLogin:false,
-      contPop:false
+      contPop:false,
+      
     }
   },
   watch: {
@@ -123,14 +127,12 @@ export default {
               this.$router.push('/')
               this.$emit('toNews')
           }else if(i==3){
-              this.$router.push('/')
-              this.$emit('toNft')
+              this.$router.push('/portalA')
           }else if(i==4){
               this.$router.push('/')
               this.$emit('toToken')
           }else if(i==5){
-              this.$router.push('/')
-              this.$emit('toIdo')
+              this.$router.push('/ido')
           }else if(i==6){
               this.$router.push('/')
               this.$emit('toMap')
@@ -152,14 +154,27 @@ export default {
       this.drawer = false
       this.scrollto = 0
     },
+    plusXing(str,frontLen,endLen){ 
+      var len = str.length-frontLen-endLen;
+      var xing = '';
+      for (var i=0;i<len;i++) {
+        xing ='...';
+      }
+      return str.substring(0,frontLen)+xing+str.substring(str.length-endLen);
+    }
   },
   created() {
     let that = this
-    this.$initTronWeb().then(function(tronWeb) {
-      that.contPop = false
-      let defaultAddress = window.tronWeb.defaultAddress.base58
-      that.defaultAddress = plusXing(defaultAddress,5,5)
-      that.isLogin = true
+    let provider
+    let signer
+    if (!window.ethereum) {
+        return
+    }
+    provider = new ethers.providers.Web3Provider(window.ethereum)
+    signer = provider.getSigner()
+    const rpcProvider = new ethers.providers.JsonRpcProvider('https://data-seed-prebsc-1-s1.binance.org:8545/')
+    signer.getAddress().then((res)=>{
+      that.defaultAddress = that.plusXing(res,5,5)
     })
   },
 }
@@ -172,7 +187,7 @@ export default {
 .header{
     // font-family: DFPBuDingW12;
     height:82px;
-    background: linear-gradient(180deg, #323131 0%, #000000 100%);
+    background:#000;
     display:flex;
     justify-content: center;
     opacity:1;
@@ -194,6 +209,28 @@ export default {
             font-family: DFPBuDingW12;
         }
     }
+    .options{
+        display:flex;
+        justify-content: space-between;
+        padding-top:16px;
+        .wallet{
+            width:197px;
+            height:40px;
+            background:#454545;
+            display:flex;
+            justify-content:center;
+            border-radius:28px;
+            font-size:18px;
+            color:#FFFFFF;
+            align-items: center;
+            font-family: Roboto-Regular, Roboto;
+            cursor: pointer;
+            img{
+                width:24px;
+                margin-right:10px;
+            }
+        }
+    }
 }
 .mobHeader{
   display:none;
@@ -204,14 +241,13 @@ export default {
 @media screen and (max-width:900px) {
   .mobHeader{
     height:60px;
-    background:url(../assets/headbg.png) no-repeat center;
     background-size:100% 100%;
     position: fixed;
     width: 100%;
     z-index:9;
     display:block;
     display:flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     .logo{
       width:88px;
       height:38px;
@@ -284,20 +320,32 @@ export default {
   // font-size: 0.5rem;
   font-size: 16px;
   margin-top: 15px;
+  padding-top:64px;
   li {
     line-height: 52px;
+    border-bottom:1px solid #363636;
     a{
         display:block;
-        color:#fff;
+        color:#ADADAD;
         text-align:left;
         padding-left:33px;
+        font-family: TimesNewRomanPS-BoldMT, TimesNewRomanPS;
         &.active{
-            color:#fff;
-            background:#05C98E;
+            color:#ADADAD;
         }
     }
   }
+  
 }
+.closeico{
+    position:absolute;
+    top:25px;
+    right:14px;
+    width:37px;
+    height:37px;
+    background:url(../assets/closeico.png) no-repeat center;
+    background-size:100% 100%;
+  }
 .drawer_nav_active {
   color: #fc6446;
   font-family: roboto-mediumitalic;
@@ -366,8 +414,7 @@ export default {
 }
 .drawer_body {
   width: 69% !important;
-  background: #319125;
-  border-radius: 16px 0px 0px 16px;
+  background: #000;
   color: #ffffff;
   /* position: relative; */
   outline: 0;

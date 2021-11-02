@@ -71,8 +71,7 @@ export default {
               this.$router.push('/')
               this.$emit('toNews')
           }else if(i==3){
-              this.$router.push('/')
-              this.$emit('toNft')
+              this.$router.push('/portalA')
           }else if(i==4){
               this.$router.push('/')
               this.$emit('toToken')

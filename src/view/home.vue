@@ -19,7 +19,11 @@
       </div>
       <div class="panel1con">
         <div class="video">
-          <iframe width="100%" height="100%" src="https://youtu.be/QRjzdT1RsmI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe src="https://www.youtube.com/embed/QRjzdT1RsmI" class="videocon" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <!-- <video controls="controls" autoplay="autoplay" id="video">
+            <source src="https://youtu.be/QRjzdT1RsmIg"  />
+            Your browser does not support the video tag.
+          </video> -->
         </div>
         <div class="right">
           <img src="../assets/panelimg2.png">
@@ -214,6 +218,9 @@ export default {
   },
   created(){
     
+  },
+  mounted(){
+    
   }
 }
 </script>
@@ -281,8 +288,12 @@ export default {
       padding-top:70px;
       margin-left: -100px;
       .video{
-        width:600px;
+        width:618px;
         height:370px;
+        .videocon{
+          width:100%;
+          height:100%;
+        }
       }
       .right{
         margin-left:30px;

@@ -2,7 +2,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import './index.css'
 import router from "./router.js";
-import initTronWeb from './utils/tronwebFn'
+// import initWeb3 from './utils/tronwebFn'
 import ElementPlus from 'element-plus';
 import 'element-plus/lib/theme-chalk/index.css';
 import VueI18n from './language'
@@ -12,7 +12,7 @@ const app = createApp(App)
 app.use(router)
 app.use(ElementPlus)
 app.use(VueI18n)
-app.config.globalProperties.$initTronWeb = initTronWeb
+// app.config.globalProperties.$initWeb3 = initWeb3
 app.mount('#app')
 
 
