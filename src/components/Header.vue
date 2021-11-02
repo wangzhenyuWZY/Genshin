@@ -11,10 +11,10 @@
             <a class="menu">Roadmap</a>
             <a class="menu">Contact</a>
         </div>
-        <div class="nav_merge" v-show="!moble">
+        <!-- <div class="nav_merge" v-show="!moble">
           <img class="merge_img" src="../assets/icon_red.png" @click="drawer = true" alt="">
-        </div>
-        <el-drawer title="我是标题" v-model="drawer" :show-close="false" custom-class="drawer_body" :with-header="false" @click="tolerPop=false">
+        </div> -->
+        <!-- <el-drawer title="我是标题" v-model="drawer" :show-close="false" custom-class="drawer_body" :with-header="false" @click="tolerPop=false">
           <div class="drawer_logo">
             <div class="lt_logo"> <img src="../assets/logo_FoxDex.png" alt="" />
             </div>
@@ -39,8 +39,6 @@
             <li><a class="menu">Contact</a></li>
           </ul>
           <div class="langAndSet">
-            <!-- <div class="setbox" @click.stop="tolerPop=true"><i class="setico"></i>Setting</div> -->
-            <!-- <div class="setbox" @click="hdel"><i class="langico"></i>简体中文</div> -->
             <div class="cantactus">
               <a target="_black" href="/"><img src=""></a>
               <a target="_black" href="/"><img src=""></a>
@@ -51,15 +49,15 @@
           </div>
           </div>
         </el-drawer>
-        <Ipopup :showAlert="contPop" @closePop="contPop=false" @contented="connectWallet"></Ipopup>
+        <Ipopup :showAlert="contPop" @closePop="contPop=false" @contented="connectWallet"></Ipopup> -->
     </div>
 </template>
 <script>
 import {plusXing} from '../utils/tronwebFn'
-import Ipopup from './ipopup.vue'
+// import Ipopup from './ipopup.vue'
 export default {
   name: 'Header',
-  components:{Ipopup},
+  // components:{Ipopup},
   computed: {
     language() {
       return this.$i18n.locale
@@ -288,24 +286,6 @@ export default {
   .langAndSet .setbox.fr {
     float: right;
     padding-right: 24px;
-  }
-  .langAndSet .setbox .setico {
-    display: inline-block;
-    vertical-align: middle;
-    width: 24px;
-    height: 24px;
-    background: url(../assets/icon_setting.png) no-repeat center;
-    background-size: 100% 100%;
-    margin-right:5px;
-  }
-  .langAndSet .setbox .langico {
-    display: inline-block;
-    vertical-align: middle;
-    width: 24px;
-    height:24px;
-    background: url(../assets/icon_lang.png) no-repeat center;
-    background-size: 100% 100%;
-    margin-right:5px;
   }
 }
 </style>
