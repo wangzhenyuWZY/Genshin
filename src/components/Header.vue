@@ -25,14 +25,7 @@
           <img class="merge_img" src="../assets/mergeico.png" @click="drawer = true" alt="">
         </div>
         <el-drawer title="我是标题" v-model="drawer" :show-close="false" custom-class="drawer_body" :with-header="false" @click="tolerPop=false">
-          <!-- <div class="drawer_btn">
-            <div class="nav-butt">
-              <div class="login_wallet drawer_wallet">
-                <img class="wallet_img" src="../assets/icon_wallet_green.png" alt="">
-                <span class="wallet_addrs">{{defaultAddress}}</span>
-              </div>
-            </div>
-          </div> -->
+          
           <i class="closeico" @click="drawer = false"></i>
           <ul class="drawer_nav">
             <li @click="toLink(0)"><a class="menu">Home</a></li>
@@ -53,6 +46,14 @@
               <a target="_black" href="/"><img src=""></a>
               <a target="_black" href="/"><img src=""></a>
           </div>
+          </div>
+          <div class="drawer_btn">
+            <div class="nav-butt">
+              <div class="login_wallet drawer_wallet">
+                <img class="wallet_img" src="../assets/icon_my_wallet.jpg" alt="">
+                <span class="wallet_addrs">{{defaultAddress}}</span>
+              </div>
+            </div>
           </div>
         </el-drawer>
     </div>    
@@ -421,13 +422,13 @@ export default {
   outline: 0;
 }
 .drawer_btn{
-    padding-top:20px
+    padding-top:60px
 }
 .drawer_wallet{
     width:222px;
     height:34px;
     margin:0 auto;
-    background:#1D7112;
+    background:rgb(69, 69, 69);
     font-size:15px;
     line-height:34px;
    font-family: Roboto-Medium, Roboto;

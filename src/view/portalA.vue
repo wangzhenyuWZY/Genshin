@@ -270,7 +270,7 @@ export default {
     display:none;
   }
   .portalCon.portalConMob{
-    padding-top:60px;
+    // padding-top:60px;
     display:block;
     .topTab{
       top:60px;

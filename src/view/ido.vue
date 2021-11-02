@@ -7,7 +7,7 @@
         <h2 class="idotitle"><img src="../assets/idotitle.png"></h2>
         <p class="idotext text1"> The IDO will be open, you will be able to swap the token without being on Whitelist.</p>
         <p class="idotext text2">{{isOpen?'Sale is opening':'Public Sale will be open in'}}</p>
-        <p class="downtime">{{day}}: {{hour}} : {{min}}: {{second}}</p>
+        <p class="downtime" v-show="!isOpen">{{day}}: {{hour}} : {{min}}: {{second}}</p>
         <p class="idotext text3">
           Swap Ratio:1BNB=3,533,568 GENSHIN<br>
           Sale Supply:1000,000,000 GENSHIN<br>
@@ -211,7 +211,8 @@ export default {
         &.text2{
           text-align:center;
           padding-top:10px;
-          font-size:18px;
+          font-size:26px;
+          font-weight:bold;
         }
         &.text3{
           padding-top:10px;
