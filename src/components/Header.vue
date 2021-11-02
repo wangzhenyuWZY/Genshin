@@ -1,42 +1,48 @@
 <template>
+  <div class="headerContainer">
     <div class="header">
         <img src="../assets/logo_FoxDex.png" class="logo">
         <div class="menus">
-            <a class="menu">Home</a>
-            <a class="menu">Game Trailer</a>
-            <a class="menu">News</a>
-            <a class="menu">NFT Portal</a>
-            <a class="menu">Tokenomics</a>
-            <a class="menu">IDO</a>
-            <a class="menu">Roadmap</a>
-            <a class="menu">Contact</a>
+            <a class="menu" @click="toLink(0)">Home</a>
+            <a class="menu" @click="toLink(1)">Game Trailer</a>
+            <a class="menu" @click="toLink(2)">News</a>
+            <a class="menu" @click="toLink(3)">NFT Portal</a>
+            <a class="menu" @click="toLink(4)">Tokenomics</a>
+            <a class="menu" @click="toLink(5)">IDO</a>
+            <a class="menu" @click="toLink(6)">Roadmap</a>
+            <a class="menu" @click="toLink(7)">Contact</a>
         </div>
-        <!-- <div class="nav_merge" v-show="!moble">
-          <img class="merge_img" src="../assets/icon_red.png" @click="drawer = true" alt="">
-        </div> -->
-        <!-- <el-drawer title="我是标题" v-model="drawer" :show-close="false" custom-class="drawer_body" :with-header="false" @click="tolerPop=false">
-          <div class="drawer_logo">
-            <div class="lt_logo"> <img src="../assets/logo_FoxDex.png" alt="" />
+        <div class="options">
+            <div class="wallet">
+                <img src="../assets/icon_my_wallet.jpg">
+                {{defaultAddress?defaultAddress:'Connect to wallet'}}
             </div>
-            <div class="rg_colse"> <img src="../assets/closeicon1.png" alt="" @click.stop="drawer = false"> </div>
-          </div>
-          <div class="drawer_btn">
+        </div>
+    </div>
+    <div class="mobHeader">
+      <!-- <img src="../assets/logo_FoxDex.png" class="logo"> -->
+      <div class="nav_merge">
+          <img class="merge_img" src="../assets/mergeico.png" @click="drawer = true" alt="">
+        </div>
+        <el-drawer title="我是标题" v-model="drawer" :show-close="false" custom-class="drawer_body" :with-header="false" @click="tolerPop=false">
+          <!-- <div class="drawer_btn">
             <div class="nav-butt">
               <div class="login_wallet drawer_wallet">
                 <img class="wallet_img" src="../assets/icon_wallet_green.png" alt="">
                 <span class="wallet_addrs">{{defaultAddress}}</span>
               </div>
             </div>
-          </div>
+          </div> -->
+          <i class="closeico" @click="drawer = false"></i>
           <ul class="drawer_nav">
-            <li><a class="menu">Home</a></li>
-            <li><a class="menu">Game Trailer</a></li>
-            <li><a class="menu">News</a></li>
-            <li><a class="menu">NFT Portal</a></li>
-            <li><a class="menu">Tokenomics</a></li>
-            <li><a class="menu">IDO</a></li>
-            <li><a class="menu">Roadmap</a></li>
-            <li><a class="menu">Contact</a></li>
+            <li @click="toLink(0)"><a class="menu">Home</a></li>
+            <li @click="toLink(1)"><a class="menu">Game Trailer</a></li>
+            <li @click="toLink(2)"><a class="menu">News</a></li>
+            <li @click="toLink(3)"><a class="menu">NFT Portal</a></li>
+            <li @click="toLink(4)"><a class="menu">Tokenomics</a></li>
+            <li @click="toLink(5)"><a class="menu">IDO</a></li>
+            <li @click="toLink(6)"><a class="menu">Roadmap</a></li>
+            <li @click="toLink(7)"><a class="menu">Contact</a></li>
           </ul>
           <div class="langAndSet">
             <div class="cantactus">
@@ -49,15 +55,14 @@
           </div>
           </div>
         </el-drawer>
-        <Ipopup :showAlert="contPop" @closePop="contPop=false" @contented="connectWallet"></Ipopup> -->
-    </div>
+    </div>    
+  </div>
 </template>
 <script>
+import { ethers } from 'ethers'
 import {plusXing} from '../utils/tronwebFn'
-// import Ipopup from './ipopup.vue'
 export default {
   name: 'Header',
-  // components:{Ipopup},
   computed: {
     language() {
       return this.$i18n.locale
@@ -80,7 +85,8 @@ export default {
       active:localStorage.getItem('active'),
       defaultAddress:'',
       isLogin:false,
-      contPop:false
+      contPop:false,
+      
     }
   },
   watch: {
@@ -107,21 +113,32 @@ export default {
         that.isLogin = true
       })
     },
-      linkTo(i){
+      toLink(i){
           localStorage.setItem('active',i)
           this.active = i
           if(i==0){
               this.$router.push('/')
           }else if(i==1){
               this.$router.push('/')
-              this.$emit('toFea')
+              this.$emit('toGame')
           }else if(i==2){
               this.$router.push('/')
-              this.$emit('toFaq')
-          }else{
-              this.$router.push('/staking')
+              this.$emit('toNews')
+          }else if(i==3){
+              this.$router.push('/portalA')
+          }else if(i==4){
+              this.$router.push('/')
+              this.$emit('toToken')
+          }else if(i==5){
+              this.$router.push('/ido')
+          }else if(i==6){
+              this.$router.push('/')
+              this.$emit('toMap')
+          }else if(i==7){
+              this.$router.push('/')
+              this.$emit('toContact')
           }
-          
+          this.drawer = false
       },
     handleSetLanguage() {
       // 选择语言
@@ -135,15 +152,31 @@ export default {
       this.drawer = false
       this.scrollto = 0
     },
+    plusXing(str,frontLen,endLen){ 
+      var len = str.length-frontLen-endLen;
+      var xing = '';
+      for (var i=0;i<len;i++) {
+        xing ='...';
+      }
+      return str.substring(0,frontLen)+xing+str.substring(str.length-endLen);
+    }
   },
   created() {
     let that = this
-    this.$initTronWeb().then(function(tronWeb) {
-      that.contPop = false
-      let defaultAddress = window.tronWeb.defaultAddress.base58
-      that.defaultAddress = plusXing(defaultAddress,5,5)
-      that.isLogin = true
+    
+    // window.ethereum.enable().then(res=>{
+    //   debugger
+    //   provider = new ethers.providers.Web3Provider(window.ethereum)
+    //   signer = provider.getSigner()
+    //   const rpcProvider = new ethers.providers.JsonRpcProvider()
+    // })
+    this.$initWeb3().then((eth)=>{
+      eth.signer.getAddress().then((res)=>{
+        that.defaultAddress = that.plusXing(res,5,5)
+      })
     })
+
+    
   },
 }
 </script>
@@ -155,7 +188,7 @@ export default {
 .header{
     // font-family: DFPBuDingW12;
     height:82px;
-    background: linear-gradient(180deg, #323131 0%, #000000 100%);
+    background:#000;
     display:flex;
     justify-content: center;
     opacity:1;
@@ -177,12 +210,54 @@ export default {
             font-family: DFPBuDingW12;
         }
     }
+    .options{
+        display:flex;
+        justify-content: space-between;
+        padding-top:16px;
+        .wallet{
+            width:197px;
+            height:40px;
+            background:#454545;
+            display:flex;
+            justify-content:center;
+            border-radius:28px;
+            font-size:18px;
+            color:#FFFFFF;
+            align-items: center;
+            font-family: Roboto-Regular, Roboto;
+            cursor: pointer;
+            img{
+                width:24px;
+                margin-right:10px;
+            }
+        }
+    }
+}
+.mobHeader{
+  display:none;
 }
 .nav_merge{
     display:none;
 }
 @media screen and (max-width:900px) {
+  .mobHeader{
+    height:60px;
+    background-size:100% 100%;
+    position: fixed;
+    width: 100%;
+    z-index:9;
+    display:block;
+    display:flex;
+    justify-content: flex-end;
+    .logo{
+      width:88px;
+      height:38px;
+      margin-left:15px;
+      margin-top:8px;
+    }
+  }
     .header{
+        display:none;
         height:40px;
         padding:0 15px;
         .logo{
@@ -197,14 +272,16 @@ export default {
     }
     .nav_merge {
         display:block;
-        margin-left: 24px;
+        background:none;
+        text-align:right;
+        padding-right:20px;
         img {
             vertical-align: middle;
             margin-top: 8px;
             cursor: pointer;
         }
         .merge_img {
-            width: 24px;
+            width: 42px;
             height: auto;
         }
     }
@@ -244,20 +321,32 @@ export default {
   // font-size: 0.5rem;
   font-size: 16px;
   margin-top: 15px;
+  padding-top:64px;
   li {
     line-height: 52px;
+    border-bottom:1px solid #363636;
     a{
         display:block;
-        color:#fff;
+        color:#ADADAD;
         text-align:left;
         padding-left:33px;
+        font-family: TimesNewRomanPS-BoldMT, TimesNewRomanPS;
         &.active{
-            color:#fff;
-            background:#05C98E;
+            color:#ADADAD;
         }
     }
   }
+  
 }
+.closeico{
+    position:absolute;
+    top:25px;
+    right:14px;
+    width:37px;
+    height:37px;
+    background:url(../assets/closeico.png) no-repeat center;
+    background-size:100% 100%;
+  }
 .drawer_nav_active {
   color: #fc6446;
   font-family: roboto-mediumitalic;
@@ -287,6 +376,24 @@ export default {
     float: right;
     padding-right: 24px;
   }
+  // .langAndSet .setbox .setico {
+  //   display: inline-block;
+  //   vertical-align: middle;
+  //   width: 24px;
+  //   height: 24px;
+  //   background: url(../assets/icon_setting.png) no-repeat center;
+  //   background-size: 100% 100%;
+  //   margin-right:5px;
+  // }
+  // .langAndSet .setbox .langico {
+  //   display: inline-block;
+  //   vertical-align: middle;
+  //   width: 24px;
+  //   height:24px;
+  //   background: url(../assets/icon_lang.png) no-repeat center;
+  //   background-size: 100% 100%;
+  //   margin-right:5px;
+  // }
 }
 </style>
 <style >
@@ -308,8 +415,7 @@ export default {
 }
 .drawer_body {
   width: 69% !important;
-  background: #319125;
-  border-radius: 16px 0px 0px 16px;
+  background: #000;
   color: #ffffff;
   /* position: relative; */
   outline: 0;

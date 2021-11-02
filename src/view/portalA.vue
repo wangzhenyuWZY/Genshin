@@ -72,7 +72,85 @@
               </div>
               <div class="tabImg" @click="btmtab = 1">
                 <img src="../assets/btmimg8.png" v-show="btmtab==1">
-                <img src="../assets/btmimg8-8.png" v-show="btmtab==!1">
+                <img src="../assets/btmimg8-8.png" v-show="btmtab!==1">
+              </div>
+              <div class="tabImg" @click="btmtab = 2">
+                <img src="../assets/btmimg9.png" v-show="btmtab==2">
+                <img src="../assets/btmimg9-9.png" v-show="btmtab!==2">
+              </div>
+            </div>
+            
+          </div>
+        </div>
+        <div class="portalCon portalConMob">
+          <div class="topTab">
+            <div class="tabImg" @click="tab = 0;btmtab = 0;">
+              <img src="../assets/mobtab1.png" v-show="parseInt(tab)==0">
+              <img src="../assets/mobtab1-1.png" v-show="parseInt(tab)!==0">
+            </div>
+            <div class="tabImg" @click="tab = 1;btmtab = 0;">
+              <img src="../assets/mobtab2.png" v-show="parseInt(tab)==1">
+              <img src="../assets/mobtab2-2.png" v-show="parseInt(tab)!==1">
+            </div>
+            <div class="tabImg" @click="tab = 2;btmtab = 0;">
+              <img src="../assets/mobtab3.png" v-show="parseInt(tab)==2">
+              <img src="../assets/mobtab3-3.png" v-show="parseInt(tab)!==2">
+            </div>
+          </div>
+          <div class="portalPanel">
+            <div class="panelImg" v-show="tab==0">
+              <img src="../assets/bigimg10.png" v-show="btmtab==0"/>
+              <img src="../assets/bigimg11.png" v-show="btmtab==1"/>
+              <img src="../assets/bigimg12.png" v-show="btmtab==2"/>
+            </div>
+            <div class="panelImg" v-show="tab==1">
+              <img src="../assets/bigimg13.png" v-show="btmtab==0"/>
+              <img src="../assets/bigimg14.png" v-show="btmtab==1"/>
+              <img src="../assets/bigimg15.png" v-show="btmtab==2"/>
+            </div>
+            <div class="panelImg" v-show="tab==2">
+              <img src="../assets/bigimg16.png" v-show="btmtab==0"/>
+              <img src="../assets/bigimg17.png" v-show="btmtab==1"/>
+              <img src="../assets/bigimg18.png" v-show="btmtab==2"/>
+            </div>
+          </div>
+          <div class="btmTab">
+            <div class="btmTabList" v-show="tab==0">
+              <div class="tabImg" @click="btmtab = 0">
+                <img src="../assets/btmimg1.png" v-show="btmtab==0">
+                <img src="../assets/btmimg1-1.png" v-show="btmtab!==0">
+              </div>
+              <div class="tabImg" @click="btmtab = 1">
+                <img src="../assets/btmimg2.png" v-show="btmtab==1">
+                <img src="../assets/btmimg2-2.png" v-show="btmtab!==1">
+              </div>
+              <div class="tabImg" @click="btmtab = 2">
+                <img src="../assets/btmimg3.png" v-show="btmtab==2">
+                <img src="../assets/btmimg3-3.png" v-show="btmtab!==2">
+              </div>
+            </div>
+            <div class="btmTabList" v-show="tab==1">
+              <div class="tabImg" @click="btmtab = 0">
+                <img src="../assets/btmimg4.png" v-show="btmtab==0">
+                <img src="../assets/btmimg4-4.png" v-show="btmtab!==0">
+              </div>
+              <div class="tabImg" @click="btmtab = 1">
+                <img src="../assets/btmimg5.png" v-show="btmtab==1">
+                <img src="../assets/btmimg5-5.png" v-show="btmtab!==1">
+              </div>
+              <div class="tabImg" @click="btmtab = 2">
+                <img src="../assets/btmimg6.png" v-show="btmtab==2">
+                <img src="../assets/btmimg6-6.png" v-show="btmtab!==2">
+              </div>
+            </div>
+            <div class="btmTabList" v-show="tab==2">
+              <div class="tabImg" @click="btmtab = 0">
+                <img src="../assets/btmimg7.png" v-show="btmtab==0">
+                <img src="../assets/btmimg7-7.png" v-show="btmtab!==0">
+              </div>
+              <div class="tabImg" @click="btmtab = 1">
+                <img src="../assets/btmimg8.png" v-show="btmtab==1">
+                <img src="../assets/btmimg8-8.png" v-show="btmtab !== 1">
               </div>
               <div class="tabImg" @click="btmtab = 2">
                 <img src="../assets/btmimg9.png" v-show="btmtab==2">
@@ -107,7 +185,7 @@ export default {
   },
   data() {
     return {
-      tab:this.$route.query.tab,
+      tab:this.$route.query.tab || 0,
       btmtab:0
     }
   },
@@ -142,6 +220,9 @@ export default {
         margin-top:30px;
     }
 }
+.portalConMob{
+  display:none;
+}
 .portalCon{
   position:relative;
   .topTab{
@@ -170,19 +251,63 @@ export default {
   width:100%;
   box-sizing: border-box;
   padding:0 10%;
-  height:143px;
   background:rgba(0,0,0,0.36);
   left:0;
   bottom:0;
   .btmTabList{
       display:flex;
-      justify-content: right;
+      justify-content: flex-end;
       width:100%;
       padding-top:18px;
       .tabImg{
         margin-left:30px;
         cursor: pointer;
       }
+  }
+}
+@media screen and (max-width:900px) {
+  .portalCon{
+    display:none;
+  }
+  .portalCon.portalConMob{
+    padding-top:60px;
+    display:block;
+    .topTab{
+      top:60px;
+      justify-content: space-evenly;
+      .tabImg{
+        margin:0;
+        
+        img{
+          width:112px;
+        }
+      }
+    }
+    .portalPanel{
+      .panelImg{
+        img{
+          width:100%;
+        }
+      }
+    }
+  }
+  .topCon{
+    display:none;
+  }
+  .btmTab{
+    padding:12px 20px;
+    height:auto;
+    box-sizing: border-box;
+    .btmTabList{
+      width:240px;
+      .tabImg{
+        margin-right:10px;
+        margin-left:0;
+        img{
+          width:66px;
+        }
+      }
+    }
   }
 }
 </style>

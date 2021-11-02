@@ -1,22 +1,30 @@
 <template>
   <div class="container">
-    <Header></Header>
+    <Header @toGame='toGame' @toNews='toNews' @toNft='toNft' @toToken='toToken' @toMap='toMap' @toContact='toContact'></Header>
     <div class="panel1">
       <img src="../assets/ren.png" class="ren">
+      <img src="../assets/ren1.png" class="ren1">
       <div class="bannerinfo">
-        <div><img src="../assets/bannerinfo.png"></div>
+        <img src="../assets/logo.png" class="logo">
+        <div class="text"><img src="../assets/bannerinfo.png"></div>
         <div class="btns">
-          <a class="btn"><img src="../assets/btn1.png"></a>
-          <a class="btn"><img src="../assets/btn2.png"></a>
+          <a class="btn" @click="comesoon"><img src="../assets/btn1.png"></a>
+          <a class="btn" target="_black" href="https://medium.com/@GenshinNFT"><img src="../assets/btn2.png"></a>
         </div>
       </div>
     </div>
     <div class="panel2">
-      <div class="titlebox">
+      <div class="titlebox" id="game">
         <img src="../assets/title1.png">
       </div>
       <div class="panel1con">
-        <img src="../assets/panelimg1.png">
+        <div class="video">
+          <iframe src="https://www.youtube.com/embed/QRjzdT1RsmI" class="videocon" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <!-- <video controls="controls" autoplay="autoplay" id="video">
+            <source src="https://youtu.be/QRjzdT1RsmIg"  />
+            Your browser does not support the video tag.
+          </video> -->
+        </div>
         <div class="right">
           <img src="../assets/panelimg2.png">
           <img src="../assets/panelimg3.png">
@@ -25,7 +33,7 @@
       </div>
     </div>
     <div class="panel3">
-      <div class="titlebox">
+      <div class="titlebox" id="news">
         <img src="../assets/title2.png">
       </div>
       <div class="panel3con">
@@ -36,9 +44,15 @@
           <img src="../assets/panelimg8.png">
           <img src="../assets/panelimg9.png">
         </div>
+        <div class="right1">
+          <img src="../assets/panelimg8.png" class="img1">
+          <img src="../assets/mobimg3.png" class="img2">
+          <img src="../assets/mobimg4.png" class="img2">
+          <img src="../assets/panelimg9.png" class="img4">
+        </div>
       </div>
     </div>
-    <div class="panel4">
+    <div class="panel4" id="nft">
       <div class="titlebox"></div>
       <div class="panel4list">
         <div class="panel4item" @click="checktab(0)">
@@ -56,14 +70,20 @@
       </div>
     </div>
     <div class="panel5">
-      <div class="titlebox">
+      <div class="titlebox" id="token">
         <img src="../assets/title3.png">
       </div>
       <img class="panel5img1" src="../assets/panelimg16.png">
+      <img class="panel5img1-1" src="../assets/mobimg7.png">
       <div class="tokeninfo">
         <img class="panel5img2" src="../assets/panelimg17.png">
         <img class="panel5img2" src="../assets/panelimg18.png">
         <img class="panel5img2" src="../assets/panelimg19.png">
+      </div>
+      <div class="tokeninfo1">
+        <img class="panel5img2" src="../assets/mobimg8.png">
+        <img class="panel5img2" src="../assets/mobimg9.png">
+        <img class="panel5img2" src="../assets/mobimg10.png">
       </div>
       <img class="panel5img3" src="../assets/panelimg20.png">
       <div class="network">
@@ -73,14 +93,17 @@
       </div>
       <div class="panel5img5">
         <img src="../assets/panelimg24.png">
+        <img src="../assets/mobimg11.png">
       </div>
       <img class="panel5img6" src="../assets/panelimg25.png">
+      <img class="panel5img6-1" src="../assets/mobimg12.png">
     </div>
-    <div class="panel6">
+    <div class="panel6" id="map">
       <div class="titlebox">
         <img src="../assets/title4.png">
       </div>
       <img class="panel6img1" src="../assets/panelimg26.png">
+      <img class="panel6img1-1" src="../assets/mobimg14.png">
     </div>
     <div class="panel7">
       <div class="titlebox">
@@ -101,12 +124,11 @@
         <img src="../assets/panelimg38.png">
       </ul>
     </div>
-    <Footer></Footer>
+    <Footer id="contact"></Footer>
   </div>
 </template>
 
 <script>
-
 import Header from '../components/Header.vue'
 import Footer from '../components/Footer.vue'
 export default {
@@ -142,6 +164,9 @@ export default {
       }
   },
   methods: {
+    comesoon(){
+      this.$message.success("Coming Soon!");
+    },
     linkTo(i){
       localStorage.setItem('active',i)
       this.$router.push('/staking')
@@ -153,9 +178,48 @@ export default {
              tab: n
          }
      })
-    }
+    },
+    toGame(){
+      this.$el.querySelector('#game').scrollIntoView({
+          behavior: "smooth",  // 平滑过渡
+          block: "start"  // 上边框与视窗顶部平齐。默认值
+      });
+    },
+    toNews(){
+      this.$el.querySelector('#news').scrollIntoView({
+          behavior: "smooth",  // 平滑过渡
+          block: "start"  // 上边框与视窗顶部平齐。默认值
+      });
+    },
+    toNft(){
+      this.$el.querySelector('#nft').scrollIntoView({
+          behavior: "smooth",  // 平滑过渡
+          block: "start"  // 上边框与视窗顶部平齐。默认值
+      });
+    },
+    toToken(){
+      this.$el.querySelector('#token').scrollIntoView({
+          behavior: "smooth",  // 平滑过渡
+          block: "start"  // 上边框与视窗顶部平齐。默认值
+      });
+    },
+    toMap(){
+      this.$el.querySelector('#map').scrollIntoView({
+          behavior: "smooth",  // 平滑过渡
+          block: "start"  // 上边框与视窗顶部平齐。默认值
+      });
+    },
+    toContact(){
+      this.$el.querySelector('#contact').scrollIntoView({
+          behavior: "smooth",  // 平滑过渡
+          block: "start"  // 上边框与视窗顶部平齐。默认值
+      });
+    },
   },
   created(){
+    
+  },
+  mounted(){
     
   }
 }
@@ -177,14 +241,23 @@ export default {
     .ren{
       width:552px;
     }
+    .ren1{
+      display:none;
+    }
     .bannerinfo{
       width:40%;
-      margin-left:-100px;
+      .logo{
+        display:none;
+      }
+      .text{
+        img{
+          width:650px;
+        }
+      }
       .btns{
         display:flex;
         justify-content: center;
         padding-top:30px;
-        padding-left:250px;
         .btn{
           width:219px;
           cursor:pointer;
@@ -214,6 +287,14 @@ export default {
       justify-content: center;
       padding-top:70px;
       margin-left: -100px;
+      .video{
+        width:618px;
+        height:370px;
+        .videocon{
+          width:100%;
+          height:100%;
+        }
+      }
       .right{
         margin-left:30px;
         img{
@@ -255,6 +336,9 @@ export default {
           }
         }
       }
+      .right1{
+        display:none;
+      }
     }
   }
   .panel4{
@@ -292,6 +376,12 @@ export default {
     .panel5img1{
       margin:42px;
     }
+    .panel5img1-1{
+      display:none;
+    }
+    .tokeninfo1{
+      display:none;
+    }
     .panel5img2{
       margin:0 34px 34px;
     }
@@ -305,7 +395,13 @@ export default {
       margin:40px auto;
       img{
         margin-left:-220px;
+        &:last-child{
+          display:none;
+        }
       }
+    }
+    .panel5img6-1{
+      display:none;
     }
   }
   .panel6{
@@ -322,6 +418,9 @@ export default {
     }
     .panel6img1{
       margin-left:365px;
+    }
+    .panel6img1-1{
+      display:none;
     }
   }
   .panel7{
@@ -349,7 +448,222 @@ export default {
 }
 @media screen and (max-width:900px) {
   .container{
-    
+    .panel1{
+      padding-top:0;
+      background:url(../assets/banner1.png) no-repeat center;
+      background-size:100% 100%;
+      display:block;
+      position:relative;
+      height:896px;
+      .ren{
+        display:none;
+      }
+      .ren1{
+        display:block;
+        position:absolute;
+        right:0;
+        bottom:0;
+        width:340px;
+      }
+      .bannerinfo{
+        width:100%;
+        margin-left:0;
+        overflow:hidden;
+        .logo{
+          display:block;
+          margin:72px auto 28px;
+        }
+        .text{
+          img{
+            width:345px;
+          }
+        }
+        .btns{
+          padding-left:0;
+          .btn{
+            width:150px;
+            height:44px;
+            line-height:44px;
+            margin:0 12px;
+            img{
+              width:100%;
+            }
+          }
+        }
+      }
+    }
+    .titlebox{
+      background:none;
+      img{
+        margin-top:34px;
+        width:186px;
+      }
+    }
+    .panel2{
+      min-height:896px;
+      background:url(../assets/mobimg1.png) no-repeat center;
+      background-size:100% 100%;
+      padding:0 20px;
+      .panel1con{
+        display:block;
+        padding-top:0;
+        margin-left:0;
+        .video{
+          width:100%;
+          height:300px;;
+        }
+        img{
+          width:100%;
+          margin-top:20px;
+        }
+        .right{
+          display:none;
+        }
+      }
+    }
+    .panel3{
+      min-height:896px;
+      background:url(../assets/mobimg2.png) no-repeat center;
+      background-size:100% 100%;
+      padding:0 20px;
+      .titlebox{
+        img{
+          margin-top:35px;
+        }
+      }
+      .panel3con{
+        &>img{
+          display:none;
+        }
+        .right{
+          display:none;
+        }
+        .right1{
+          display:block;
+          .img1{
+            width:100%;
+          }
+          .img2{
+            width:100%;
+            margin-top:14px;
+            margin-bottom:18px;
+          }
+          .img4{
+            margin-left: 160px;
+            margin-top: 56px;
+          }
+        }
+      }
+    }
+    .panel4{
+      min-height:896px;
+      background:url(../assets/mobimg5.png) no-repeat center;
+      background-size:100% 100%;
+      padding:0 20px;
+      overflow:hidden;
+      .panel4list{
+        display:block;
+        .panel4item{
+          margin:0;
+          width:100%;
+          margin-bottom:180px;
+          &:last-child{
+            margin-bottom:140px;
+          }
+          img{
+            width:100%;
+          }
+        }
+      }
+    }
+    .panel5{
+      min-height:896px;
+      background:url(../assets/mobimg6.png) no-repeat center;
+      background-size:100% 100%;
+      .titlebox{
+        img{
+          margin-top:35px;
+        }
+      }
+      .panel5img1{
+        display:none;
+      }
+      .panel5img1-1{
+        display:block;
+        margin:10px auto;
+      }
+      .tokeninfo{
+        display:none;
+      }
+      .tokeninfo1{
+        display:block;
+        .panel5img2{
+          margin:0 0 46px;
+        }
+      }
+      .network{
+        .panel5img4{
+          margin:0 6px;
+          width:107px;
+        }
+      }
+      .panel5img5{
+        img{
+          width:365px;
+          margin:0 auto;
+          display:none;
+          &:last-child{
+            display:block;
+          }
+        }
+      }
+      .panel5img6{
+        display:none;
+      }
+      .panel5img6-1{
+        width:215px;
+        display:block;
+        margin-left:20px;
+      }
+    }
+    .panel6{
+      min-height:1382px;
+      background:url(../assets/mobimg13.png) no-repeat center;
+      background-size:100% 100%;
+      padding:0 10px;
+      .titlebox{
+        img{
+          margin-top:35px;
+        }
+      }
+      .panel6img1{
+        display:none;
+      }
+      .panel6img1-1{
+        display:block;
+        margin-top:70px;
+        width:100%;
+      }
+    }
+    .panel7{
+      min-height:896px;
+      background:url(../assets/mobimg15.png) no-repeat center;
+      background-size:100% 100%;
+      padding:0 20px;
+      .titlebox{
+        img{
+          margin-top:35px;
+        }
+      }
+      .partnerList{
+        width:100%;
+        margin:36px auto;
+        img{
+          width:109px;
+          margin-bottom:22px;
+        }
+      }
+    }
   }
 }
 </style>

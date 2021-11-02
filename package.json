@@ -8,6 +8,7 @@
   "dependencies": {
     "bignumber.js": "^9.0.1",
     "element-plus": "^1.0.2-beta.70",
+    "ethers": "^5.5.1",
     "require": "^2.4.20",
     "vue": "^3.0.4",
     "vue-i18n": "^9.1.7",
