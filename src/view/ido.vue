@@ -65,7 +65,7 @@ export default {
       balance:0,
       defaultAccount:'',
       web3:null,
-      downTime:1635868800000,
+      downTime:1635955200000,
       isOpen:false,
       bnbval:'',
       genshinval:''
@@ -152,6 +152,10 @@ export default {
       }
     },
     async toTransfer(){
+      if(!this.isOpen){
+        this.$message.error('Coming Soon!')
+        return
+      }
       if(parseFloat(this.bnbval)>parseFloat(this.balance)){
         this.$message.error('Insufficient funds for transfer')
         return
