@@ -185,7 +185,7 @@ export default {
   },
   data() {
     return {
-      tab:this.$route.query.tab,
+      tab:this.$route.query.tab || 0,
       btmtab:0
     }
   },
@@ -270,7 +270,7 @@ export default {
     display:none;
   }
   .portalCon.portalConMob{
-    padding-top:60px;
+    // padding-top:60px;
     display:block;
     .topTab{
       top:60px;

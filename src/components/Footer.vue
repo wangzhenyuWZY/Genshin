@@ -26,7 +26,7 @@
                     <img src="../assets/panelimg42.png">
                     <div class="contact">
                         <a href="https://twitter.com/GenshinNFT"><img src="../assets/panelimg43.png"></a>
-                        <img src="../assets/panelimg44.png">
+                        <a href="https://t.me/GENSHIN_OFFICIAL"><img src="../assets/panelimg44.png"></a>
                         <img src="../assets/panelimg45.png">
                         <a href="https://medium.com/@GenshinNFT"><img src="../assets/panelimg46.png"></a>
                     </div>

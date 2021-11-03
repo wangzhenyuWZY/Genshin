@@ -7,11 +7,11 @@
         <h2 class="idotitle"><img src="../assets/idotitle.png"></h2>
         <p class="idotext text1"> The IDO will be open, you will be able to swap the token without being on Whitelist.</p>
         <p class="idotext text2">{{isOpen?'Sale is opening':'Public Sale will be open in'}}</p>
-        <p class="downtime">{{day}}: {{hour}} : {{min}}: {{second}}</p>
+        <p class="downtime" v-show="!isOpen">{{day}}: {{hour}} : {{min}}: {{second}}</p>
         <p class="idotext text3">
           Swap Ratio:1BNB=3,533,568 GENSHIN<br>
           Sale Supply:1000,000,000 GENSHIN<br>
-          Allocation
+          Allocation:1BNB ~ 3BNB
         </p>
         <div class="swap">
           <div class="swapput">
@@ -80,14 +80,17 @@ export default {
           }
       },
       bnbval(newValue){
-        if(newValue<1){
-          this.bnbval = 1
-          this.$message.error('The minimum value is 1')
-        }else if(newValue>3){
-          this.bnbval = 3
-          this.$message.error('The maximum is 3')
+        if(!newValue){
+          this.genshinval = ''
+          return
+        }else{
+          if(newValue<1){
+            this.$message.error('The minimum value is 1')
+          }else if(newValue>3){
+            this.$message.error('The maximum is 3')
+          }
+          this.genshinval = newValue*3533568
         }
-        this.genshinval = newValue*3533568
       }
   },
   methods: {
@@ -153,27 +156,31 @@ export default {
         this.$message.error('Insufficient funds for transfer')
         return
       }
+      if(arseFloat(this.bnbval)<1){
+        this.$message.error('The minimum value is 1')
+        return
+      }else if(arseFloat(this.bnbval)>3){
+        this.$message.error('The maximum is 3')
+        return
+      }
       const tx = await this.signer.sendTransaction({ to: "0x063be8c38f2b44751730ce20f902978a401480c7", value: ethers.utils.parseEther(this.bnbval) });
       if(tx){
         this.$message.success('Success!');
       }
+    },
+    async getInfo(){
+      this.defaultAddress  = await this.signer.getAddress()
+      let balance = await this.provider.getBalance(this.defaultAddress)
+      this.balance = (balance/Math.pow(10,18)).toFixed(4)
     }
   },
   async created(){
     let that = this
-    let provider
-    let signer
-    if (!window.ethereum) {
-        return
-    }
-    provider = new ethers.providers.Web3Provider(window.ethereum)
-    signer = provider.getSigner()
-    const rpcProvider = new ethers.providers.JsonRpcProvider('https://data-seed-prebsc-1-s1.binance.org:8545/')
-    that.defaultAddress  = await signer.getAddress()
-    let balance = await provider.getBalance(that.defaultAddress)
-    this.balance = (balance/Math.pow(10,18)).toFixed(4)
-    this.provider = provider
-    this.signer = signer
+    this.$initWeb3().then((eth)=>{
+      that.provider = eth.provider
+      that.signer = eth.signer
+      that.getInfo()
+    })
     this.countTime()
   }
 }
@@ -214,7 +221,8 @@ export default {
         &.text2{
           text-align:center;
           padding-top:10px;
-          font-size:18px;
+          font-size:26px;
+          font-weight:bold;
         }
         &.text3{
           padding-top:10px;
