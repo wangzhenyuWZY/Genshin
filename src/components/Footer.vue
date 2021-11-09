@@ -75,9 +75,6 @@ export default {
           }else if(i==4){
               this.$router.push('/')
               this.$emit('toToken')
-          }else if(i==5){
-              this.$router.push('/')
-              this.$emit('toIdo')
           }else if(i==6){
               this.$router.push('/')
               this.$emit('toMap')

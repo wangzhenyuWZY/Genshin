@@ -14,12 +14,12 @@ const router = createRouter({
             path: '/portalA',
             name: 'portalA',
             component: () => import('./view/portalA.vue')
-        },
-        {
-            path: '/ido',
-            name: 'ido',
-            component: () => import('./view/ido.vue')
         }
+        // {
+        //     path: '/ido',
+        //     name: 'ido',
+        //     component: () => import('./view/ido.vue')
+        // }
     ]
 })
 

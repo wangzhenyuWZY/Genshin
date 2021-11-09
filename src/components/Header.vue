@@ -8,7 +8,7 @@
             <a class="menu" @click="toLink(2)">News</a>
             <a class="menu" @click="toLink(3)">NFT Portal</a>
             <a class="menu" @click="toLink(4)">Tokenomics</a>
-            <a class="menu" @click="toLink(5)">IDO</a>
+            <!-- <a class="menu" @click="toLink(5)">IDO</a> -->
             <a class="menu" @click="toLink(6)">Roadmap</a>
             <a class="menu" @click="toLink(7)">Contact</a>
         </div>
@@ -33,7 +33,7 @@
             <li @click="toLink(2)"><a class="menu">News</a></li>
             <li @click="toLink(3)"><a class="menu">NFT Portal</a></li>
             <li @click="toLink(4)"><a class="menu">Tokenomics</a></li>
-            <li @click="toLink(5)"><a class="menu">IDO</a></li>
+            <!-- <li @click="toLink(5)"><a class="menu">IDO</a></li> -->
             <li @click="toLink(6)"><a class="menu">Roadmap</a></li>
             <li @click="toLink(7)"><a class="menu">Contact</a></li>
           </ul>
@@ -130,8 +130,6 @@ export default {
           }else if(i==4){
               this.$router.push('/')
               this.$emit('toToken')
-          }else if(i==5){
-              this.$router.push('/ido')
           }else if(i==6){
               this.$router.push('/')
               this.$emit('toMap')
